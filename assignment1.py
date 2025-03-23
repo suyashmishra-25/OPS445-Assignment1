@@ -81,3 +81,39 @@ if __name__ == "__main__":
         usage()
     weekends = day_count(date1, date2)
     print(f"The period between {min(date1, date2)} and {max(date1, date2)} includes {weekends} weekend days.")
+
+def valid_date(date: str) -> bool:
+    """
+    Checks if the given date is valid in 'YYYY-MM-DD' format.
+    Parameters:
+        date (str): The date as a string in 'YYYY-MM-DD' format.
+    Returns:
+        bool: True if the date is valid, False otherwise.
+    """
+
+    try:
+        # Ensure the date is in correct format
+        parts = date.split('-')
+        if len(parts) != 3:
+            return False
+
+       # Convert string parts to integers
+        year, month, day = map(int, parts)
+
+        # Validate year range (reasonable limits)
+        if year < 1000 or year > 9999:  
+            return False
+
+        # Validate month range
+        if month < 1 or month > 12:
+            return False
+
+       # Validate day range using mon_max()
+        max_days = mon_max(month, year)
+        if day < 1 or day > max_days:
+            return False
+
+        return True  # If all checks pass, return True
+
+    except (ValueError, TypeError):
+        return False  # Catch non-numeric value or the incorrect format
