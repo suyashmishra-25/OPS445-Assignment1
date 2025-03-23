@@ -20,6 +20,7 @@ import sys
 def leap_year(year: int) -> bool:
     """Finding if the year is leap year or not"""
     return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+#Confirming that we have leap year or not by divisibilty of 4
 
 def mon_max(month: int, year: int) -> int:
     """FInding the maximum number of days in a given month."""
@@ -28,6 +29,7 @@ def mon_max(month: int, year: int) -> int:
     if month == 2 and leap_year(year):
         return 29
     return days_per_month.get(month, 0)
+#Output is month max no. of days
 
 def after(date: str) -> str:
     """The After function is used to delay execution of the program or to execute a command in background sometime in the future. 
@@ -48,7 +50,7 @@ def valid_date(date: str) -> bool:
         year, month, day = map(int, date.split('-'))
         return 1 <= month <= 12 and 1 <= day <= mon_max(month, year)
     except ValueError:
-        return False
+        return False #Ensuring that we have valid date for further calculation
 
 def day_of_week(year: int, month: int, date: int) -> str:
     """Determining the day of the week for a given date."""
