@@ -4,7 +4,7 @@
 '''
 OPS445 Assignment 1 - Winter 2025
 Program: assignment1.py 
-Author: "Student Name"
+Author: SUYASH MISHRA (SMISHRA27)
 The python code in this file (a1_[Student_id].py) is original work written by
 "Student Name". No code in this file is copied from any other source
 except those provided by the course instructor, including any person,
@@ -30,10 +30,16 @@ def day_of_week(year: int, month: int, date: int) -> str:
  
  
  
-def mon_max(month:int, year:int) -> int:
-    "returns the maximum day for a given month. Includes leap year check"
-    ...
- 
+def mon_max(month: int, year: int) -> int:
+    """
+    Determines the maximum number of days in a given month of a specified year.
+    """
+    days_per_month = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 
+                      7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
+    
+    if month == 2 and leap_year(year):
+        return 29  
+    return days_per_month.get(month, 0) 
  
 def after(date: str) -> str:
     '''
@@ -82,9 +88,11 @@ def usage():
  
  
 def leap_year(year: int) -> bool:
-    "return True if the year is a leap year"
-    ...
- 
+    """
+    Determines whether a given year is a leap year.
+    Returns True if leap year, otherwise False.
+    """
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0) 
  
 def valid_date(date: str) -> bool:
     "check validity of date and return True if valid"
